@@ -1,7 +1,7 @@
 ### Assignment: Cinema Ticket Purchasing System with Custom Exceptions
 
 #### Background
-You are tasked with developing a simple cinema ticket purchasing system. The system should be able to handle various error conditions that may arise during the ticket purchasing process. To provide clear and specific error messages, you will create custom exceptions that represent these error conditions.
+You are tasked with developing a simple Cinema ticket purchasing system. The system should be able to handle various error conditions that may arise during the ticket purchasing process. To provide clear and specific error messages, you will create custom exceptions that represent these error conditions.
 
 #### Objectives
 1. Create two custom exceptions:
@@ -68,12 +68,12 @@ You are tasked with developing a simple cinema ticket purchasing system. The sys
           this.walletBalance = walletBalance;
       }
 
-      public void purchaseTicket(Cinema cinema, int seatNumber, double ticketPrice) {
+      public void purchaseTicket(Cinema Cinema, int seatNumber, double ticketPrice) {
           if (walletBalance < ticketPrice) {
               throw new InsufficientFundsException(name + " does not have enough funds to purchase the ticket.");
           }
           try {
-              cinema.bookSeat(seatNumber);
+              Cinema.bookSeat(seatNumber);
               walletBalance -= ticketPrice;
               System.out.println(name + " purchased a ticket for seat " + seatNumber);
           } catch (InvalidSeatException e) {
@@ -90,11 +90,11 @@ You are tasked with developing a simple cinema ticket purchasing system. The sys
   ```java
   public class CinemaApp {
       public static void main(String[] args) {
-          Cinema cinema = new Cinema(100); // Cinema with 100 seats
+          Cinema Cinema = new Cinema(100); // Cinema with 100 seats
           Customer customer = new Customer("John Doe", 50.00); // Customer with $50 balance
 
           try {
-              customer.purchaseTicket(cinema, 101, 15.00); // Attempt to purchase an invalid seat
+              customer.purchaseTicket(Cinema, 101, 15.00); // Attempt to purchase an invalid seat
           } catch (InsufficientFundsException e) {
               System.err.println("Error: " + e.getMessage());
               // Additional error handling code if necessary
